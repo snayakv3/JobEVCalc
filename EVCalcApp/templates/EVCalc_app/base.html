@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'EVCalc_app/styles/styles.css' %}">
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>PokéJob EV Calculator</title>
+    {% endif %}
+</head>
+<body>
+    <script src="{% static 'EVCalc_app/header.js' %}" defer></script>
+    <div class="header">
+        <div class="header-title">
+            <h1><a href="{% url 'index' %}">PokéJob EV Calculator</a></h1>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

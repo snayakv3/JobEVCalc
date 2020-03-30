@@ -1,0 +1,19 @@
+{% extends 'EVCalc_app/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class = "page">
+    <div class = "four-oh-four">
+        <img src="{% static 'EVCalc_app/images/eevee-error' %}" alt="Eevee telling you to click on the header">
+        <div class ="message">
+            <div class="error">
+                <h2> Sorry the page you're looking for doesn't exist</h2>
+            </div>
+            <div class="help">
+                <h4> (Use the title to go to the homepage) </h4>
+            </div>
+        </div>
+
+</div>
+
+{% endblock %}

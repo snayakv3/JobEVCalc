@@ -1,0 +1,228 @@
+/* general page setup */
+* {
+    /* -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none; */
+    padding:0;
+    margin:0;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    letter-spacing: .01em;
+}
+
+/* header and error bar */
+.header{
+    background-color: #141414;
+    height: 3em;
+    border-bottom: groove thin white;
+    font-size: 1.25em;
+    padding-top: .85em;
+}
+
+.header-title{
+    padding-left: 1em;
+}
+.header-title a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.errors{
+    background-color: red;
+    color: white;
+    text-align: center;
+    height: 1.7em;
+    opacity: .95;
+}
+
+.errors a{
+    color: white;
+    text-decoration: none;
+}
+.error-message{
+    float: left;
+    padding-right: .25em;
+    padding-top: .25em;
+}
+
+.close-button{
+    float: left;
+    padding-right: 1.5em;
+    padding-bottom: .5em;
+    padding-left: .5em;
+    padding-top: .25em;
+}
+
+/* all pages */
+.page{
+    white-space: nowrap;
+    position: absolute;
+    padding-top: 1em;
+    padding-left: 1.5em;
+}
+
+/* index page */
+.calculate{
+   width: 31.3em;
+   height: 72em;
+}
+
+.calculate:focus::placeholder{
+    color: transparent;
+}
+.calculate::placeholder{
+    font-size: 30px;
+    color: #E3E3E3;
+}
+
+.calculate::-ms-input-placeholder{
+    font-size: 35px;
+    color: #E3E3E3;
+}
+
+#button {
+    padding-bottom: .5em;
+}
+
+.disabled{
+    opacity: 0.8;
+    cursor: not-allowed;
+    transition: none;
+}
+
+.submit {
+    height: 2em;
+    width: 23em;
+    background-color: #292929;
+    border-radius: 2px;
+    border: outset thin grey;
+}
+
+.active:hover{
+    background-color: #000000;
+    border: solid thick black;
+    transition: all .5s;
+}
+
+input[type="submit"]{
+    color: white;
+    font-size: 1em;
+}
+
+.form-element{
+    display: inline-block;
+    padding-right: 1em;
+}
+
+.form-element form{
+    padding-top: .5em;
+}
+
+.form-element textarea{
+    padding: 1em;
+}
+.faq-element{
+    display: inline-block;
+    padding: 3.5em;
+    vertical-align: top;
+    width: 40em;
+}
+.question{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    white-space:normal;
+}
+.question p{
+    text-indent: 2em;
+}
+.day-element{
+    display: inline-block;
+    vertical-align: top;
+    padding-top: 1em;
+    padding-left: 3.5em;
+}
+
+.job-element h2{
+    float:left;
+    padding-top: 1em;
+    padding-left: 9em;
+    padding-right: .7em;
+}
+
+.job-element{
+    display: inline-block;
+    vertical-align: top;
+    font-size: larger;
+    padding-left: 5em;
+    padding-right: 1em;
+}
+
+.job-info-element{
+    padding-left: 1.5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+}
+
+.job-border{
+    white-space: nowrap;
+    border: thin groove black;
+    padding: 1em;
+}
+.day-num-check{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-top: .45em;
+}
+.day-num-check a{
+    color:grey;
+}
+
+.job-stat{
+    clear:both;
+    padding: 2px;
+}
+
+.day-title h2, p{
+    display: inline;
+}
+.day-setup-title{
+    padding-bottom: .5em;
+}
+.power-items{
+    padding-top: .5em;
+    padding-bottom: 1em;
+}
+
+.power-items h2{
+    padding-bottom: .25em;
+}
+
+.power-items p{
+    padding-left: .25em;
+
+}
+
+/* error page */
+.four-oh-four .message{
+    padding-top: 7em;
+    display: inline-block;
+    vertical-align:top;
+}
+.four-oh-four .message .error{
+    font-size: 20px;
+    padding-bottom: .25em;
+    color: #F00000;
+}
+
+.four-oh-four .message .help{
+    color: black;
+}
+
+.four-oh-four img{
+    display: inline-block;
+    width: 200px;
+}

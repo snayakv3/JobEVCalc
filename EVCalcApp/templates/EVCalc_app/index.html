@@ -1,0 +1,94 @@
+{% extends 'EVCalc_app/base.html' %}
+{% load static %}
+{% block content %}
+<script src="{% static 'EVCalc_app/form.js' %}" defer></script>
+{% if error %}
+    <div class="errors">
+        <a href=#>
+            <span class="close-button">
+                <strong>&#215;</strong>
+            </span>
+        </a>
+        <span class="error-message">
+            {{ error }}
+        </span>
+
+    </div>
+{% endif %}
+<div class="page">
+    <div class="form-element">
+        <form action = "{% url 'index' %}" method="post">
+            {% csrf_token %}
+                <div id="button">
+                    <input type="submit" value="CALCULATE" class="submit active">
+                </div>
+                <textarea name="team" class="calculate" placeholder="Paste your team or Pokémon here">{{ user_input }}</textarea>
+        </form>
+    </div>
+    {% if days %}
+    <script src="{% static 'EVCalc_app/dayjobs.js' %}" defer></script>
+    <div class="day-element">
+        <div class="day-setup-title">
+            <h1>Job Setup</h1>
+        </div>
+        <div class="power-items">
+            <h2>Total Power Items</h2>
+            {% for power_item, amount in power_items %}
+                <p>Power {{ power_item }}: <b>{{ amount }}</b></p><br>
+            {% endfor %}
+        </div>
+        <div class="day-title">
+            <h2>Days</h2><p> <a href=#>[show all]</a></p>
+        </div>
+        {% for day in days %}
+            <div class = "day-num-check">
+                <h4><input type="checkbox" id="test"> <a href="#">Day {{ day.get_num }}</a></h4>
+            </div>
+            <div class="job-info-element" hidden>
+                <div class="job-border">
+                    {% for stat, time, team, amount in day.get_stats_job_length %}
+                        <div class="job-stat">
+                            <strong>{{ stat }} - {{ amount }}</strong>
+                            <br>
+                            <small>{{ time }}</small><br>
+                            {% for Pokémon in team %}
+                                &nbsp;&nbsp;&nbsp;&nbsp;<small>{{ Pokémon }}</small><br>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <script defer>
+        var sampleTeamFile = "{% static 'EVCalc_app/sample.txt' %}"
+    </script>
+        <script src="{% static 'EVCalc_app/faq.js' %}" defer></script>
+        <div class="faq-element">
+            <h2>FAQ</h2>
+            <div class="question">
+                <h3>How does this work?</h3>
+                <p> Export and paste your team or Pokémon from <a href="https://play.pokemonshowdown.com/teambuilder" target="_blank">Showdown</a>
+                    and hit the submit button. Here's a sample team: <a href="#">[Load sample team]</a></p>
+            </div>
+            <div class="question">
+                <h3>What do I do with the days?</h3>
+                <p>Ideally you'd send your Pokémon to their respective PokeJobs for the day for each given day and use day skipping to move forward each day. If doing that is not your cup of tea then you could just wait out the day, but I don't recommend this. </p>
+            </div>
+            <div class="question">
+                <h3>Is this really optimal?</h3>
+                <p>It's as optimal as I could make it, however I know it's still falls short. If you find any inefficiencies please let me know though. I'm currently working on a way to let people input the max amount of power items to use. Regardless... I tried my best, I have no regrets.</p>
+            </div>
+            <div class="question">
+                <h3>Why would you do this when using vitamins and feathers is way faster?</h3>
+                <p>Because I thought it could useful for people not willing to shell over Poké Dollars for them but I do realize you could just farm money.
+            </div>
+            <div class="question">
+                <h3>You website design is ugly</h3>
+                <p>I know... and there are also alot of glitches on the website cause I suck at web design</p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
