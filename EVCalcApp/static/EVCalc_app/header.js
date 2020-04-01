@@ -27,7 +27,6 @@ function closeErrors(){
     let closeButton = ERRORS.querySelector(".close-button")
     BODY.removeChild(ERRORS)
     HEADER.style.borderBottomColor = "white"
-    closeButton.onclick = null
 }
 
 function setErrors(width){
