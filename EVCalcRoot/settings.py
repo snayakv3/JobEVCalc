@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+SECRET_KEY_INDEX = 0
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -20,7 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'this-is-not-the-real-key'
+f = open('key', 'r')
+SECRET_KEY = f.readlines()[SECRET_KEY_INDEX]
+f.close()
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
