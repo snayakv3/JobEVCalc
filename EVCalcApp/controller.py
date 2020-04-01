@@ -20,7 +20,6 @@ def calculate_job_ev_days(team_data, meta_data):
         if parse_check:
             stat_map = setup.set_common_stats(pokemon_team)
             setup_check = setup.check_common_team(pokemon_team, stat_map)
-            setup_check = False
             if setup_check:
                 possible_best_days = calc.optimal_calc(pokemon_team, stat_map)
                 number_of_days_check = calc.check_days_number(pokemon_team, possible_best_days)
