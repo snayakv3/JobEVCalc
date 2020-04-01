@@ -12,21 +12,24 @@ function editHeader(){
         HEADER.setAttribute("style","width:"+width+"px;");
         if(ERRORS != null){
             setErrors(width);
+            if(HEADER.style.borderBottomColor == "white"){
+                HEADER.style.borderBottomColor = "red"
+            }
         }
     }
     else if(ERRORS != null){
-        setErrors(width)
-        HEADER.style.borderBottomColor = "red"
+        setErrors(width);
+        HEADER.style.borderBottomColor = "red";
     }
-
 
     windowResize = false;
 }
 
-function closeErrors(){
-    let closeButton = ERRORS.querySelector(".close-button")
-    BODY.removeChild(ERRORS)
-    HEADER.style.borderBottomColor = "white"
+function closeErrors(e){
+    e.preventDefault();
+    let closeButton = ERRORS.querySelector(".close-button");
+    BODY.removeChild(ERRORS);
+    HEADER.style.borderBottomColor = "white";
 }
 
 function setErrors(width){
