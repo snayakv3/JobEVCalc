@@ -14,7 +14,8 @@ function editHeader(){
             setErrors(width);
         }
     }
-    if(ERRORS != null){
+    else if(ERRORS != null){
+        setErrors(width)
         HEADER.style.borderBottomColor = "red"
     }
 
@@ -23,15 +24,17 @@ function editHeader(){
 }
 
 function closeErrors(){
+    let closeButton = ERRORS.querySelector(".close-button")
     BODY.removeChild(ERRORS)
     HEADER.style.borderBottomColor = "white"
+    closeButton.onclick = null
 }
 
 function setErrors(width){
     let closeButton = ERRORS.querySelector(".close-button")
     ERRORS.setAttribute("style","width: "+width+"px")
 
-    if(!windowResize){
+    if(closeButton.onclick == null){
         closeButton.onclick = closeErrors
     }
 }
