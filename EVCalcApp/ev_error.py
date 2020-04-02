@@ -24,28 +24,34 @@ error_logger.setLevel(logging.INFO)
 def get_email_and_password():
     email_address = None
     password = None
-    print(os.listdir())
-    with open("key") as f:
-       email_address, password = f.readlines()[CRED_INDEX].split(' ')
+    file = None
+    try:
+        with open("key") as file:
+            email_address, password = file.readlines()[CRED_INDEX].split(' ')
+    except (IndexError, FileNotFoundError, ValueError) as e:
+        error_logger.warning("Not able to get email and password for logging due to {}".format(e))
+        if file is not None:
+            file.close()
     return email_address, password
 
 def create_error_file(ip, user_input, error_messages):
     address, password = get_email_and_password()
-    message = MIMEMultipart()
-    message['From'] = address
-    message['To'] = address
-    message['Subject'] = 'Error for {}'.format(ip)
-    text = '\n'.join(error_messages)
-    message.attach(MIMEText(text, 'plain'))
-    part = MIMEApplication(user_input)
-    part['Content-Disposition'] = 'attachment; filename="user_input.txt"'
-    message.attach(part)
-    session = smtplib.SMTP('smtp.gmail.com', 587)
-    session.starttls()
-    session.login(address, password)
-    text = message.as_string()
-    session.sendmail(address, address, text)
-    session.quit()
+    if address is not None:
+        message = MIMEMultipart()
+        message['From'] = address
+        message['To'] = address
+        message['Subject'] = 'Error for {}'.format(ip)
+        text = '\n'.join(error_messages)
+        message.attach(MIMEText(text, 'plain'))
+        part = MIMEApplication(user_input)
+        part['Content-Disposition'] = 'attachment; filename="user_input.txt"'
+        message.attach(part)
+        session = smtplib.SMTP('smtp.gmail.com', 587)
+        session.starttls()
+        session.login(address, password)
+        text = message.as_string()
+        session.sendmail(address, address, text)
+        session.quit()
 
 def write_logs(ip_address, team_data, *error_messages):
     for err_msg in error_messages:

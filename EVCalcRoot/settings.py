@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.core.exceptions import ImproperlyConfigured
+
 SECRET_KEY_INDEX = 0
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,16 +21,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURITY WARNING: keep the secret key used in production secret!
-f = open('key', 'r')
-SECRET_KEY = f.readlines()[SECRET_KEY_INDEX]
-f.close()
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+
+# IMPORTANT: You need to create a file named "key" in the root directory of project
+# with a secret key to the line specified by SECRET_KEY_INDEX (defaults to the first line)
+
+# If you want to be emailed logging info for errors then you may also want to add your
+# email credentials in the form of "email password" on the line specified by CRED_INDEX
+# in the file ev_error.py in EVCalc_app
+# Note: We currently can only send emails to gmail accounts
+
+# SECURITY WARNING: keep the key file used in production secret!
+try:
+    file = open('key', 'r')
+    SECRET_KEY = file.readlines()[SECRET_KEY_INDEX]
+    file.close()
+except:
+    raise ImproperlyConfigured("Unable to read key file, please create a proper key file.")
 
 # Application definition
 
@@ -116,6 +126,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEBUG = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
