@@ -16,7 +16,7 @@ body{
 .header{
     background-color: #141414;
     height: 3em;
-    border-bottom: groove thin white;
+    border-bottom: groove thin;
     font-size: 1.25em;
     padding-top: .85em;
 }

@@ -29,7 +29,7 @@ def ev_parser(data):
     stat_ev_raw_data = data.split(' / ')
     for stat_ev in stat_ev_raw_data:
         ev, stat = stat_ev.strip().split(' ')
-        if stat not in ev_spread_data or not ev.isdigit() or int(ev) > 252:
+        if stat not in ev_spread_data or not ev.isdigit() or int(ev) > 252 or int(ev)%4 != 0:
             return None
         ev_spread_data[stat] = int(ev)
     return EVSpread(ev_spread_data)
